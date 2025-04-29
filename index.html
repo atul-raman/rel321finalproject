@@ -4,34 +4,216 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faith and the Civil Rights Movement</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { background: #333; color: #fff; padding: 1rem; text-align: center; }
-    #timeline { padding: 2rem; }
-    .event { border-left: 4px solid #333; margin: 1rem 0; padding-left: 1rem; }
-    .event h3 { margin: 0; }
-    #gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 2rem; }
-    #gallery img { width: 100%; height: auto; cursor: pointer; display: block; }
-    /* Lightbox */
-    #lightbox { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; }
-    #lightbox img { max-width: 90%; max-height: 90%; }
+    :root {
+      --primary: #2c3e50;
+      --secondary: #e67e22;
+      --background: #f7f9fa;
+      --text: #333;
+      --card-bg: #fff;
+      --radius: 8px;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    nav {
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 4px var(--shadow);
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    nav li {
+      margin: 0.5rem 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 0.5rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--secondary);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    #about {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px var(--shadow);
+      margin-bottom: 2rem;
+    }
+    #about h2 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-family: 'Lora', serif;
+    }
+    #timeline {
+      margin-bottom: 2rem;
+    }
+    .event {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 6px var(--shadow);
+      position: relative;
+    }
+    .event::before {
+      content: attr(data-year);
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      background-color: var(--secondary);
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .event h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+    .event p {
+      margin-bottom: 0.5rem;
+    }
+    .event a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    #gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 6px var(--shadow);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #gallery img:hover {
+      transform: scale(1.03);
+    }
+    #sources {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px var(--shadow);
+      margin-bottom: 2rem;
+    }
+    #sources h2 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-family: 'Lora', serif;
+    }
+    #sources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #sources li {
+      margin-bottom: 0.5rem;
+    }
+    #sources a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: var(--radius);
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      nav ul { flex-direction: column; }
+      nav li { margin: 0.5rem 0; }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Faith and the Civil Rights Movement</h1>
-    <p>Interactive timeline and photo gallery showcasing key moments</p>
+    <p>Exploring how Black churches and religious leaders fueled the fight for racial justice.</p>
   </header>
 
-  <section id="timeline">
-    <h2>Timeline</h2>
-    <!-- Events will be injected here -->
-  </section>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+  </nav>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <!-- Thumbnails injected here -->
-  </section>
+  <div class="container">
+    <section id="about">
+      <h2>About This Project</h2>
+      <p>This site examines how religious faith underpinned the Civil Rights Movement, focusing on key figures like Martin Luther King Jr. and organizations such as the Southern Christian Leadership Conference. Through theological rhetoric, sermon excerpts, and gospel music, faith provided both moral guidance and community structure for activism.</p>
+    </section>
+
+    <section id="timeline">
+      <h2>Interactive Timeline</h2>
+      <!-- Events injected via JS -->
+    </section>
+
+    <section id="gallery">
+      <h2>Photo Gallery</h2>
+      <!-- Images injected via JS -->
+    </section>
+
+    <section id="sources">
+      <h2>Primary & Secondary Sources</h2>
+      <ul>
+        <li><strong>Primary:</strong> <a href="https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" target="_blank">Letter from Birmingham Jail</a> (MLK Jr., 1963)</li>
+        <li><strong>Primary:</strong> <a href="https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" target="_blank">Selma to Montgomery March Photos</a> (1965)</li>
+        <li><strong>Secondary:</strong> Chappell, David L. <em>A Stone of Hope: Prophetic Religion and the Death of Jim Crow</em>. UNC Press, 2004.</li>
+        <!-- Add additional sources here -->
+      </ul>
+    </section>
+  </div>
 
   <div id="lightbox" onclick="hideLightbox()">
     <img src="" alt="Enlarged photo">
@@ -39,50 +221,38 @@
 
   <script>
     const events = [
-      {
-        year: 1963,
-        title: "Letter from Birmingham Jail",
-        description: "MLK Jr. writes to religious leaders defending nonviolent protest, invoking Christian ethics and historical religious movements.",
-        link: "https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html"
-      },
-      {
-        year: 1965,
-        title: "Selma to Montgomery March",
-        description: "Faith leaders and participants sing gospel hymns as a form of protest and solidarity.",
-        link: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg"
-      }
-      // Add more events here
+      { year: 1963, title: "Letter from Birmingham Jail", description: "MLK Jr. defends nonviolent protest using Christian ethics.", link: "https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" },
+      { year: 1965, title: "Selma to Montgomery March", description: "Participants sang gospel hymns and prayed during the march.", link: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" }
+      // More events can be added here
     ];
 
     const images = [
-      {
-        src: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg",
-        alt: "Selma to Montgomery March, 1965"
-      }
-      // Add more images here
+      { src: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg", alt: "Selma to Montgomery March, 1965" }
+      // More images can be added here
     ];
 
     const timelineEl = document.getElementById('timeline');
     events.forEach(evt => {
-      const div = document.createElement('div');
-      div.className = 'event';
-      div.innerHTML = `<h3>${evt.year}: <a href="${evt.link}" target="_blank">${evt.title}</a></h3><p>${evt.description}</p>`;
-      timelineEl.appendChild(div);
+      const card = document.createElement('div');
+      card.className = 'event';
+      card.setAttribute('data-year', evt.year);
+      card.innerHTML = `<h3><a href="${evt.link}" target="_blank">${evt.title}</a></h3><p>${evt.description}</p>`;
+      timelineEl.appendChild(card);
     });
 
     const galleryEl = document.getElementById('gallery');
-    images.forEach(imgData => {
-      const img = document.createElement('img');
-      img.src = imgData.src;
-      img.alt = imgData.alt;
-      img.onclick = () => showLightbox(imgData.src);
-      galleryEl.appendChild(img);
+    images.forEach(img => {
+      const thumb = document.createElement('img');
+      thumb.src = img.src;
+      thumb.alt = img.alt;
+      thumb.onclick = () => showLightbox(img.src);
+      galleryEl.appendChild(thumb);
     });
 
     function showLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.style.display = 'flex';
-      lightbox.querySelector('img').src = src;
+      const lb = document.getElementById('lightbox');
+      lb.style.display = 'flex';
+      lb.querySelector('img').src = src;
     }
     function hideLightbox() {
       document.getElementById('lightbox').style.display = 'none';

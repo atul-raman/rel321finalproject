@@ -34,23 +34,32 @@
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
+    header p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
     nav {
       background-color: var(--card-bg);
       box-shadow: 0 2px 4px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     nav ul {
       display: flex;
       justify-content: center;
       list-style: none;
+      padding: 0.5rem;
     }
     nav li {
-      margin: 0.5rem 1rem;
+      margin: 0 1rem;
     }
     nav a {
       text-decoration: none;
       color: var(--primary);
       font-weight: 700;
-      padding: 0.5rem;
       transition: color 0.3s;
     }
     nav a:hover {
@@ -72,6 +81,9 @@
       margin-bottom: 1rem;
       color: var(--primary);
       font-family: 'Lora', serif;
+    }
+    #about p {
+      margin-bottom: 0.75rem;
     }
     #timeline {
       margin-bottom: 2rem;
@@ -98,11 +110,12 @@
     }
     .event h3 {
       margin-bottom: 0.5rem;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--primary);
     }
     .event p {
       margin-bottom: 0.5rem;
+      font-size: 1rem;
     }
     .event a {
       color: var(--secondary);
@@ -144,6 +157,7 @@
     }
     #sources li {
       margin-bottom: 0.5rem;
+      font-size: 1rem;
     }
     #sources a {
       color: var(--secondary);
@@ -176,7 +190,7 @@
 <body>
   <header>
     <h1>Faith and the Civil Rights Movement</h1>
-    <p>Exploring how Black churches and religious leaders fueled the fight for racial justice.</p>
+    <p>This project explores how religious faith, especially within Black church communities, provided moral leadership, strategic frameworks, and communal solidarity that powered the push for equality in mid-20th-century America.</p>
   </header>
 
   <nav>
@@ -191,7 +205,8 @@
   <div class="container">
     <section id="about">
       <h2>About This Project</h2>
-      <p>This site examines how religious faith underpinned the Civil Rights Movement, focusing on key figures like Martin Luther King Jr. and organizations such as the Southern Christian Leadership Conference. Through theological rhetoric, sermon excerpts, and gospel music, faith provided both moral guidance and community structure for activism.</p>
+      <p>The Civil Rights Movement was not only a political and social struggle but also a deeply religious one. Black churches served as organizing hubs, providing meeting spaces, moral guidance through sermons, and inspiration through gospel music. Leaders like Dr. Martin Luther King Jr. used theological arguments—drawing on the Bible, Christian ethics, and historic religious precedents—to justify civil disobedience and galvanize mass support.</p>
+      <p>This site presents an interactive timeline of pivotal events, a gallery of powerful imagery, and curated primary and secondary sources to showcase the indispensable role faith played in shaping laws, public opinion, and grassroots activism.</p>
     </section>
 
     <section id="timeline">
@@ -207,10 +222,11 @@
     <section id="sources">
       <h2>Primary & Secondary Sources</h2>
       <ul>
-        <li><strong>Primary:</strong> <a href="https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" target="_blank">Letter from Birmingham Jail</a> (MLK Jr., 1963)</li>
-        <li><strong>Primary:</strong> <a href="https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" target="_blank">Selma to Montgomery March Photos</a> (1965)</li>
+        <li><strong>Primary:</strong> <a href="https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" target="_blank">Martin Luther King Jr.'s Letter from Birmingham Jail</a> (1963)</li>
+        <li><strong>Primary:</strong> <a href="https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" target="_blank">Selma to Montgomery March Photography</a> (1965)</li>
+        <li><strong>Primary:</strong> <a href="https://www.jstor.org/stable/2644996" target="_blank">Speech: "I Have a Dream"</a> transcript, March on Washington (1963)</li>
         <li><strong>Secondary:</strong> Chappell, David L. <em>A Stone of Hope: Prophetic Religion and the Death of Jim Crow</em>. UNC Press, 2004.</li>
-        <!-- Add additional sources here -->
+        <li><strong>Secondary:</strong> Carson, Clayborne. <em>Martin Luther King, Jr.: From Montgomery to Memphis</em>. Houghton Mifflin, 1998.</li>
       </ul>
     </section>
   </div>
@@ -221,14 +237,21 @@
 
   <script>
     const events = [
-      { year: 1963, title: "Letter from Birmingham Jail", description: "MLK Jr. defends nonviolent protest using Christian ethics.", link: "https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" },
-      { year: 1965, title: "Selma to Montgomery March", description: "Participants sang gospel hymns and prayed during the march.", link: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" }
-      // More events can be added here
+      { year: 1954, title: "Brown v. Board of Education", description: "Supreme Court declares segregation in public schools unconstitutional, energizing faith-based justice advocates.", link: "https://www.archives.gov/milestone-documents/brown-v-board-education" },
+      { year: 1955, title: "Montgomery Bus Boycott", description: "Sparked by Rosa Parks, the 381-day boycott organized by Black churches challenges segregation of public transportation.", link: "https://kinginstitute.stanford.edu/encyclopedia/montgomery-bus-boycott" },
+      { year: 1960, title: "Greensboro Sit-Ins", description: "College students begin nonviolent sit-ins; local churches provide support and training in peaceful protest.", link: "https://www.history.com/topics/1960s/greensboro-sit-ins" },
+      { year: 1961, title: "Freedom Rides", description: "Interracial groups test segregation laws on interstate buses. Faith leaders from CORE and SNCC offer chaplaincy and moral encouragement.", link: "https://www.pbs.org/wgbh/americanexperience/freedomriders/" },
+      { year: 1963, title: "Letter from Birmingham Jail", description: "MLK Jr. articulates the moral imperative of civil disobedience, rooted in Christian ethics.", link: "https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" },
+      { year: 1963, title: "March on Washington", description: "Over 250,000 gather at Lincoln Memorial; Dr. King delivers his iconic "I Have a Dream" speech, invoking biblical imagery.", link: "https://www.archives.gov/files/press/exhibits/dream-speech.pdf" },
+      { year: 1964, title: "Civil Rights Act", description: "Landmark legislation outlawing segregation; fueled by faith-based lobbying and voter mobilization by churches.", link: "https://www.congress.gov/bill/88th-congress/senate-bill/1564" },
+      { year: 1965, title: "Selma to Montgomery March", description: "Protesters, guided by religious convictions, walk 54 miles for voting rights; images of prayer circles inspire national support.", link: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg" },
+      { year: 1965, title: "Voting Rights Act", description: "Prohibits racial discrimination in voting; culmination of faith-driven advocacy and grassroots pressure.", link: "https://www.justice.gov/crt/history-federal-voting-rights-laws" }
     ];
 
     const images = [
-      { src: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg", alt: "Selma to Montgomery March, 1965" }
-      // More images can be added here
+      { src: "https://www.loc.gov/exhibits/odyssey/archive/05/0520001r.jpg", alt: "Selma to Montgomery March, 1965" },
+      { src: "https://www.crmvet.org/docs/img-8.jpg", alt: "Montgomery Bus Boycott, 1955" },
+      { src: "https://www.archives.gov/files/press/press-kits/civil-rights-act.jpg", alt: "Signing of Civil Rights Act, 1964" }
     ];
 
     const timelineEl = document.getElementById('timeline');
